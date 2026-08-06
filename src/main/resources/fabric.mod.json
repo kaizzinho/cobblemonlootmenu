@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "id": "cobblemon_loot_menu",
+  "version": "${version}",
+  "name": "Cobblemon Loot Menu",
+  "description": "Server-authoritative loot selection menus for Cobblemon, with optional WildBosses and RCT integration.",
+  "authors": [
+    "Arthur"
+  ],
+  "license": "MIT",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      {
+        "adapter": "kotlin",
+        "value": "dev.cobblemonlootmenu.CobblemonLootMenu"
+      }
+    ],
+    "client": [
+      {
+        "adapter": "kotlin",
+        "value": "dev.cobblemonlootmenu.client.CobblemonLootMenuClient"
+      }
+    ]
+  },
+  "depends": {
+    "java": ">=21",
+    "minecraft": "1.21.1",
+    "fabricloader": ">=0.17.2",
+    "fabric-api": ">=0.116.6",
+    "fabric-language-kotlin": ">=1.13.6+kotlin.2.2.20",
+    "cobblemon": ">=1.7.3 <1.8.0"
+  },
+  "recommends": {
+    "wildbosses": "*",
+    "rctmod": "*"
+  }
+}

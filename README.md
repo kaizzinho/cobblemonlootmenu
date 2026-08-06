@@ -1,0 +1,298 @@
+# Cobblemon Loot Menu
+
+![Status](https://img.shields.io/badge/status-private%20testing-yellow)
+![Minecraft](https://img.shields.io/badge/Minecraft-1.21.1-62B47A?logo=minecraft&logoColor=white)
+![Fabric](https://img.shields.io/badge/Fabric-Loom-DBB69B?logo=fabric&logoColor=white)
+![Kotlin](https://img.shields.io/badge/Kotlin-2.2.20-7F52FF?logo=kotlin&logoColor=white)
+![Cobblemon](https://img.shields.io/badge/Cobblemon-1.7.3-3E8E41)
+![License](https://img.shields.io/badge/license-MIT-blue)
+
+*Read this in [English](#english) | Leia em [Português](#português)*
+
+---
+
+## English
+
+### What is it?
+
+**Cobblemon Loot Menu** replaces direct loot drops with a small selection screen.
+
+Loot stays server-side. The player only chooses what to take, drop, or discard.
+
+It works with wild Pokémon and has optional integrations with **WildBosses** and [Radical Cobblemon Trainers](https://modrinth.com/mod/rctmod).
+
+### Screenshots
+
+#### Wild Pokémon Loot
+
+Regular wild Pokémon drops are rolled by Cobblemon and shown in the menu.
+
+![Wild Pokémon Loot](docs/screenshots/wild-pokemon-loot.png)
+
+#### RCT Mod Integration
+
+Trainer rewards from RCT are caught and routed through the same screen.
+
+![RCT Mod Integration](docs/screenshots/rct-mod-integration.png)
+
+#### WildBosses Mod Integration
+
+Boss-tier rewards and the Pokémon's regular species loot are merged into one session.
+
+![WildBosses Mod Integration](docs/screenshots/wildbosses-mod-integration.png)
+
+### Features
+
+- take one stack, selected stacks, or everything;
+- drop or discard unresolved loot;
+- Escape and the title-bar X safely use Drop All;
+- scrollable grid for more than 20 stacks;
+- per-player queue for consecutive rewards;
+- timeout and disconnect fallback;
+- inventory-overflow notification;
+- optional WildBosses and RCT compatibility;
+- public API for other server-side mods.
+
+A single session supports up to **256 non-empty stacks**.
+
+### Controls
+
+- **Left-click** — select or unselect
+- **Right-click / Shift + Left-click** — take one stack
+- **Take Selected** — take selected stacks
+- **Take All** — take everything
+- **Drop All** — drop unresolved loot at its origin
+- **Discard All** — delete unresolved loot
+- **Escape / X** — same as Drop All
+
+### Server-side safety
+
+```text
+loot is rolled on the server
+    -> a pending session is created
+    -> the client receives display copies
+    -> the player sends an action and slot indices
+    -> the server resolves the real stacks
+```
+
+The client never sends item IDs, quantities, or components back to the server.
+
+### Requirements
+
+- Minecraft `1.21.1`
+- Java `21`
+- Fabric Loader `0.17.2`
+- Fabric API `0.116.6+1.21.1`
+- Fabric Language Kotlin `1.13.6+kotlin.2.2.20`
+- Cobblemon `1.7.3+1.21.1`
+
+Optional:
+
+- WildBosses
+- Radical Cobblemon Trainers
+
+### Installation
+
+1. Install Fabric Loader, Fabric API, Fabric Language Kotlin, and Cobblemon.
+2. Put the Cobblemon Loot Menu JAR in the `mods` folder.
+3. Start the game or server once to generate the config.
+
+### Configuration
+
+The first launch creates:
+
+```text
+config/cobblemon_loot_menu.json
+```
+
+It controls timeouts, queue size, integrations, diagnostic logs, queue indicators, overflow messages, and advanced compatibility timings.
+
+Restart the game or server after changing it.
+
+### Admin commands
+
+```text
+/lootmenu test
+/lootmenu test <1-256>
+/lootmenu pending
+/lootmenu compat
+```
+
+The default permission level is `2` and can be changed in the config.
+
+### Public API
+
+Other server-side mods can queue loot without accessing internal sessions:
+
+```kotlin
+CobblemonLootMenuApi.enqueue(
+    LootMenuRequest(
+        player = player,
+        level = level,
+        dropPosition = position,
+        title = Component.literal("Quest reward"),
+        stacks = rewards,
+        sourceId = ResourceLocation.fromNamespaceAndPath("examplemod", "quest")
+    )
+)
+```
+
+All supplied stacks are copied before being stored.
+
+### Building
+
+Java 21 is required. From the project root:
+
+```powershell
+./gradlew clean build
+```
+
+The JAR will be generated in `build/libs/`.
+
+### License
+
+Available under the MIT license.
+
+---
+
+## Português
+
+### O que é?
+
+**Cobblemon Loot Menu** substitui o drop direto de loot por uma pequena tela de seleção.
+
+Os itens ficam no servidor. O jogador apenas escolhe o que pegar, dropar ou descartar.
+
+O mod funciona com Pokémon selvagens e possui integrações opcionais com **WildBosses** e [Radical Cobblemon Trainers](https://modrinth.com/mod/rctmod).
+
+### Capturas de tela
+
+#### Loot de Pokémon selvagem
+
+Os drops normais de Pokémon selvagens são rolados pelo Cobblemon e exibidos no menu.
+
+![Loot de Pokémon selvagem](docs/screenshots/wild-pokemon-loot.png)
+
+#### Integração com o RCT
+
+As recompensas dos treinadores do RCT são capturadas e enviadas para a mesma tela.
+
+![Integração com o RCT](docs/screenshots/rct-mod-integration.png)
+
+#### Integração com o WildBosses
+
+O loot do boss e o drop normal da espécie são unidos em uma única sessão.
+
+![Integração com o WildBosses](docs/screenshots/wildbosses-mod-integration.png)
+
+### Recursos
+
+- pegar um stack, os selecionados ou todos;
+- dropar ou descartar o loot restante;
+- Escape e o X da janela usam Drop All com segurança;
+- grade com rolagem para mais de 20 stacks;
+- fila individual para recompensas consecutivas;
+- fallback em timeout e desconexão;
+- aviso quando o inventário está cheio;
+- compatibilidade opcional com WildBosses e RCT;
+- API pública para outros mods de servidor.
+
+Uma sessão aceita até **256 stacks não vazios**.
+
+### Controles
+
+- **Clique esquerdo** — seleciona ou remove a seleção
+- **Clique direito / Shift + Clique esquerdo** — pega um stack
+- **Take Selected** — pega os stacks selecionados
+- **Take All** — pega tudo
+- **Drop All** — dropa o loot restante na origem
+- **Discard All** — apaga o loot restante
+- **Escape / X** — mesmo comportamento de Drop All
+
+### Segurança no servidor
+
+```text
+o loot é rolado no servidor
+    -> uma sessão pendente é criada
+    -> o cliente recebe cópias para exibição
+    -> o jogador envia uma ação e índices de slots
+    -> o servidor resolve os stacks reais
+```
+
+O cliente nunca envia IDs, quantidades ou componentes dos itens de volta ao servidor.
+
+### Requisitos
+
+- Minecraft `1.21.1`
+- Java `21`
+- Fabric Loader `0.17.2`
+- Fabric API `0.116.6+1.21.1`
+- Fabric Language Kotlin `1.13.6+kotlin.2.2.20`
+- Cobblemon `1.7.3+1.21.1`
+
+Opcionais:
+
+- WildBosses
+- Radical Cobblemon Trainers
+
+### Instalação
+
+1. Instale Fabric Loader, Fabric API, Fabric Language Kotlin e Cobblemon.
+2. Coloque o JAR do Cobblemon Loot Menu na pasta `mods`.
+3. Inicie o jogo ou servidor uma vez para gerar a configuração.
+
+### Configuração
+
+Na primeira inicialização, o mod cria:
+
+```text
+config/cobblemon_loot_menu.json
+```
+
+O arquivo controla timeouts, tamanho da fila, integrações, logs de diagnóstico, indicador da fila, avisos de inventário cheio e tempos avançados de compatibilidade.
+
+Reinicie o jogo ou servidor depois de alterar a configuração.
+
+### Comandos administrativos
+
+```text
+/lootmenu test
+/lootmenu test <1-256>
+/lootmenu pending
+/lootmenu compat
+```
+
+O nível de permissão padrão é `2` e pode ser alterado na configuração.
+
+### API pública
+
+Outros mods de servidor podem enviar loot para o menu sem acessar as sessões internas:
+
+```kotlin
+CobblemonLootMenuApi.enqueue(
+    LootMenuRequest(
+        player = player,
+        level = level,
+        dropPosition = position,
+        title = Component.literal("Quest reward"),
+        stacks = rewards,
+        sourceId = ResourceLocation.fromNamespaceAndPath("examplemod", "quest")
+    )
+)
+```
+
+Todos os stacks são copiados antes de serem armazenados.
+
+### Compilação
+
+É necessário usar Java 21. Na raiz do projeto:
+
+```powershell
+./gradlew clean build
+```
+
+O JAR será gerado em `build/libs/`.
+
+### Licença
+
+Disponível sob a licença MIT.

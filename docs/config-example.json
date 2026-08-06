@@ -1,0 +1,14 @@
+{
+  "sessionTimeoutSeconds": 60,
+  "maxQueuedSessions": 16,
+  "adminCommandPermissionLevel": 2,
+  "enableWildPokemonLoot": true,
+  "enableWildBossesCompat": true,
+  "enableRctCompat": true,
+  "diagnosticLogging": false,
+  "showQueueIndicator": true,
+  "showInventoryOverflowMessage": true,
+  "rctWatchTicks": 20,
+  "rctCaptureRadius": 4.0,
+  "wildBossStashTimeoutSeconds": 60
+}
