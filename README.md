@@ -19,7 +19,7 @@
 
 Loot stays server-side. The player only chooses what to take, drop, or discard.
 
-It works with wild Pokémon and has optional integrations with **WildBosses** and [Radical Cobblemon Trainers](https://modrinth.com/mod/rctmod).
+It works with wild Pokémon and has optional integrations with **[WildBosses](https://github.com/arthurc0sme/WildBosses)** and [Radical Cobblemon Trainers](https://modrinth.com/mod/rctmod).
 
 ### Screenshots
 
@@ -45,7 +45,7 @@ Boss-tier rewards and the Pokémon's regular species loot are merged into one se
 
 - take one stack, selected stacks, or everything;
 - drop or discard unresolved loot;
-- Escape and the title-bar X safely use Drop All;
+- Esc. and the title-bar X safely use Drop All;
 - scrollable grid for more than 20 stacks;
 - per-player queue for consecutive rewards;
 - timeout and disconnect fallback;
@@ -63,7 +63,7 @@ A single session supports up to **256 non-empty stacks**.
 - **Take All** — take everything
 - **Drop All** — drop unresolved loot at its origin
 - **Discard All** — delete unresolved loot
-- **Escape / X** — same as Drop All
+- **Esc / X** — same as Drop All
 
 ### Server-side safety
 
@@ -189,7 +189,7 @@ O loot do boss e o drop normal da espécie são unidos em uma única sessão.
 
 - pegar um stack, os selecionados ou todos;
 - dropar ou descartar o loot restante;
-- Escape e o X da janela usam Drop All com segurança;
+- Esc. e o X da janela usam Drop All com segurança;
 - grade com rolagem para mais de 20 stacks;
 - fila individual para recompensas consecutivas;
 - fallback em timeout e desconexão;
@@ -207,7 +207,7 @@ Uma sessão aceita até **256 stacks não vazios**.
 - **Take All** — pega tudo
 - **Drop All** — dropa o loot restante na origem
 - **Discard All** — apaga o loot restante
-- **Escape / X** — mesmo comportamento de Drop All
+- **Esc. / X** — mesmo comportamento de Drop All
 
 ### Segurança no servidor
 

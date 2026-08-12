@@ -30,7 +30,7 @@ object RctLootCatcher {
         val collected: MutableList<ItemStack> = mutableListOf()
     )
 
-    // catches the item entities rct spawns right after a trainer win
+    // grabs rct drops right after trainer wins
     private val activeWatches = mutableMapOf<UUID, Watch>()
 
     fun register() {
@@ -45,7 +45,7 @@ object RctLootCatcher {
             val trainerMob = trainerActor.entity as? TrainerMob ?: return@subscribe
             val level = trainerMob.level() as? ServerLevel ?: return@subscribe
 
-            // solo fights are the normal rct path; co-op needs better winner lookup later
+            // coop winner lookup needs more work
             val player = battle.players.firstOrNull() ?: return@subscribe
 
             CompatDiagnostics.rct.trainerVictoriesObserved++

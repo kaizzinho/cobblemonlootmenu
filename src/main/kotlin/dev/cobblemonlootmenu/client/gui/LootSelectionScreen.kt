@@ -141,7 +141,7 @@ class LootSelectionScreen(
             }
         }
 
-        // render these last so the item model can't cover them
+        // draw taken marks last so items cant cover them
         graphics.pose().pushPose()
         graphics.pose().translate(0.0, 0.0, 300.0)
 
@@ -584,6 +584,6 @@ class LootSelectionScreen(
     }
 
     override fun renderBackground(graphics: GuiGraphics, mouseX: Int, mouseY: Int, partialTick: Float) {
-        // skip vanilla blur, the screen already draws its own overlay
+        // custom overlay already handles the blur
     }
 }

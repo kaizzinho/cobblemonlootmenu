@@ -7,7 +7,6 @@ import net.minecraft.server.level.ServerPlayer
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.phys.Vec3
 
-// queues server-owned loot for one player; call it from the server thread
 data class LootMenuRequest(
     val player: ServerPlayer,
     val level: ServerLevel,

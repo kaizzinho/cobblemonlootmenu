@@ -68,7 +68,6 @@ object CobblemonLootInterceptor {
             val speciesName = pokemonEntity.pokemon.getDisplayName(false)
             event.cancel()
 
-            // non-item entries still run through cobblemon's normal logic
             event.drops
                 .filterNot { it is ItemDropEntry }
                 .forEach { entry ->
@@ -79,7 +78,7 @@ object CobblemonLootInterceptor {
             val isBoss = bossCompatReady && WildBossesLootBridge.isBoss(pokemonEntity.uuid)
 
             if (isBoss) {
-                // merge these with the boss reward so the player only gets one screen
+                // boss loot gets merged into one screen
                 WildBossesLootBridge.stashSpeciesLoot(
                     entityUuid = pokemonEntity.uuid,
                     player = player,

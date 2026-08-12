@@ -326,7 +326,7 @@ object PendingLootManager {
         )
 
         if (spreadForTest) {
-            // makes /lootmenu test drops easy to see without changing real battle loot
+            // test drops get some room so theyre easy to spot
             entity.setPickUpDelay(TEST_DROP_PICKUP_DELAY_TICKS)
             entity.setDeltaMovement(
                 (level.random.nextDouble() - 0.5) * TEST_DROP_SPREAD,

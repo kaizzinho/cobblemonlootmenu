@@ -3,11 +3,12 @@
   "id": "cobblemon_loot_menu",
   "version": "${version}",
   "name": "Cobblemon Loot Menu",
-  "description": "Server-authoritative loot selection menus for Cobblemon, with optional WildBosses and RCT integration.",
+  "description": "Shows defeated Pokémon loot in a simple selection menu, with optional WildBosses and RCT integration.",
   "authors": [
     "Arthur"
   ],
   "license": "MIT",
+  "icon": "assets/cobblemon_loot_menu/icon.png",
   "environment": "*",
   "entrypoints": {
     "main": [

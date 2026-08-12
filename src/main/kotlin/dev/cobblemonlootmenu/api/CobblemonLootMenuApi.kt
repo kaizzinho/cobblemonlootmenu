@@ -9,7 +9,6 @@ import net.minecraft.world.item.ItemStack
 import net.minecraft.world.phys.Vec3
 
 object CobblemonLootMenuApi {
-    // queues loot without exposing the internal session state
     @JvmStatic
     fun enqueue(request: LootMenuRequest): LootEnqueueResult {
         return PendingLootManager.enqueue(
