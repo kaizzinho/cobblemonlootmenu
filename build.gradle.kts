@@ -9,7 +9,7 @@ plugins {
 }
 
 group = "dev.cobblemonlootmenu"
-version = "0.1.0"
+version = "1.0"
 
 base {
     archivesName.set("cobblemon-loot-menu")

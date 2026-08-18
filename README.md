@@ -1,6 +1,7 @@
 # Cobblemon Loot Menu
 
 ![Status](https://img.shields.io/badge/status-private%20testing-yellow)
+![Version](https://img.shields.io/badge/version-1.0-blue)
 ![Minecraft](https://img.shields.io/badge/Minecraft-1.21.1-62B47A?logo=minecraft&logoColor=white)
 ![Fabric](https://img.shields.io/badge/Fabric-Loom-DBB69B?logo=fabric&logoColor=white)
 ![Kotlin](https://img.shields.io/badge/Kotlin-2.2.20-7F52FF?logo=kotlin&logoColor=white)
@@ -16,6 +17,8 @@
 ### What is it?
 
 **Cobblemon Loot Menu** replaces direct loot drops with a small selection screen.
+
+Current version: **1.0**.
 
 Loot stays server-side. The player only chooses what to take, drop, or discard.
 
@@ -160,6 +163,8 @@ Available under the MIT license.
 ### O que é?
 
 **Cobblemon Loot Menu** substitui o drop direto de loot por uma pequena tela de seleção.
+
+Versão atual: **1.0**.
 
 Os itens ficam no servidor. O jogador apenas escolhe o que pegar, dropar ou descartar.
 
