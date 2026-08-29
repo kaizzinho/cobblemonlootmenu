@@ -5,7 +5,7 @@
   "name": "Cobblemon Loot Menu",
   "description": "Shows defeated Pokémon loot in a simple selection menu, with optional WildBosses and RCT integration.",
   "authors": [
-    "Arthur"
+    "kaizzinho"
   ],
   "license": "MIT",
   "icon": "assets/cobblemon_loot_menu/icon.png",

@@ -58,10 +58,14 @@ object CobblemonLootInterceptor {
                 return@subscribe
             }
 
-            val rolledStacks = itemEntries.mapNotNull { entry -> materialize(entry, level) }
-            if (rolledStacks.isEmpty()) {
-                LootMenuLog.diagnostic("[cobblemon] skipped: item entries rolled no stacks")
+            val materializedDrops = itemEntries.map { entry -> materialize(entry, level) }
+            if (materializedDrops.any { it is MaterializedDrop.Failed }) {
+                LootMenuLog.diagnostic("[cobblemon] skipped: failed to materialize item entries")
                 return@subscribe
+            }
+
+            val rolledStacks = materializedDrops.mapNotNull { result ->
+                (result as? MaterializedDrop.Stack)?.stack
             }
 
             val dropPosition = pokemonEntity.position()
@@ -73,6 +77,11 @@ object CobblemonLootInterceptor {
                 .forEach { entry ->
                     entry.drop(pokemonEntity, level, dropPosition, player)
                 }
+
+            if (rolledStacks.isEmpty()) {
+                LootMenuLog.diagnostic("[cobblemon] item entries rolled no stacks")
+                return@subscribe
+            }
 
             val bossCompatReady = CompatDiagnostics.wildBossesIntegration.registered
             val isBoss = bossCompatReady && WildBossesLootBridge.isBoss(pokemonEntity.uuid)
@@ -108,7 +117,13 @@ object CobblemonLootInterceptor {
         CobblemonLootMenuConstants.LOGGER.info("Cobblemon loot listener registered")
     }
 
-    private fun materialize(entry: ItemDropEntry, level: ServerLevel): ItemStack? {
+    private sealed interface MaterializedDrop {
+        data class Stack(val stack: ItemStack) : MaterializedDrop
+        data object Empty : MaterializedDrop
+        data object Failed : MaterializedDrop
+    }
+
+    private fun materialize(entry: ItemDropEntry, level: ServerLevel): MaterializedDrop {
         val item = level.registryAccess()
             .registryOrThrow(Registries.ITEM)
             .get(entry.item)
@@ -117,16 +132,25 @@ object CobblemonLootInterceptor {
                     "Unable to materialize Cobblemon drop {}",
                     entry.item
                 )
-                return null
+                return MaterializedDrop.Failed
             }
 
         val count = entry.quantityRange?.random() ?: entry.quantity
-        if (count <= 0) return null
+        if (count <= 0) return MaterializedDrop.Empty
 
-        val stack = ItemStack(item, count)
-        val patchBuilder = DataComponentPatch.builder()
-        entry.components?.forEach { component -> patchBuilder.set(component) }
-        stack.applyComponentsAndValidate(patchBuilder.build())
-        return stack
+        return runCatching {
+            val stack = ItemStack(item, count)
+            val patchBuilder = DataComponentPatch.builder()
+            entry.components?.forEach { component -> patchBuilder.set(component) }
+            stack.applyComponentsAndValidate(patchBuilder.build())
+            MaterializedDrop.Stack(stack)
+        }.getOrElse { error ->
+            CobblemonLootMenuConstants.LOGGER.warn(
+                "Unable to apply Cobblemon drop components for {}",
+                entry.item,
+                error
+            )
+            MaterializedDrop.Failed
+        }
     }
 }
