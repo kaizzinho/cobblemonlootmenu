@@ -1,6 +1,6 @@
 {
-  "screen.cobblemon_loot_menu.title": "%1$s has been defeated! Loot Dropped:",
-  "screen.cobblemon_loot_menu.alpha_title": "Alpha %1$s has been defeated! Loot Dropped:",
+  "screen.cobblemon_loot_menu.title": "%1$s has been defeated!",
+  "screen.cobblemon_loot_menu.alpha_title": "Alpha %1$s has been defeated!",
   "screen.cobblemon_loot_menu.drop_all": "Drop All",
   "screen.cobblemon_loot_menu.discard_all": "Discard All",
   "screen.cobblemon_loot_menu.take_all": "Take All",

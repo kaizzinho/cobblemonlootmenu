@@ -70,13 +70,12 @@ class LootSelectionScreen(
         blit(graphics, LootTextures.TITLE_BAR, panelX + 5, panelY + 5, 266, 18)
         blit(graphics, LootTextures.ICON_BALL, panelX + 9, panelY + 6, 16, 16)
 
-        graphics.drawString(
-            font,
-            title,
-            panelX + 29,
-            panelY + 10,
-            0xFFFFFF,
-            true
+        drawFittedTitle(
+            graphics = graphics,
+            text = title,
+            x = panelX + 29,
+            y = panelY + 10,
+            maxWidth = TITLE_MAX_WIDTH
         )
 
         val closeHovered = isInside(mouseX, mouseY, panelX + 254, panelY + 9, 9, 9)
@@ -529,6 +528,42 @@ class LootSelectionScreen(
         graphics.blit(texture, x, y, 0f, 0f, width, height, width, height)
     }
 
+    private fun drawFittedTitle(
+        graphics: GuiGraphics,
+        text: Component,
+        x: Int,
+        y: Int,
+        maxWidth: Int
+    ) {
+        val rawText = text.string
+        var displayText = rawText
+        var textWidth = font.width(displayText).coerceAtLeast(1)
+        var scale = (maxWidth.toFloat() / textWidth).coerceAtMost(1f)
+
+        if (scale < TITLE_MIN_SCALE) {
+            val ellipsis = "…"
+            val ellipsisWidth = font.width(ellipsis)
+            val unscaledMaxWidth = (maxWidth / TITLE_MIN_SCALE).toInt()
+            val fittedWidth = (unscaledMaxWidth - ellipsisWidth).coerceAtLeast(1)
+            displayText = font.plainSubstrByWidth(rawText, fittedWidth).trimEnd() + ellipsis
+            textWidth = font.width(displayText).coerceAtLeast(1)
+            scale = (maxWidth.toFloat() / textWidth).coerceIn(TITLE_MIN_SCALE, 1f)
+        }
+
+        graphics.pose().pushPose()
+        graphics.pose().translate(x.toDouble(), y.toDouble(), 0.0)
+        graphics.pose().scale(scale, scale, 1f)
+        graphics.drawString(
+            font,
+            displayText,
+            0,
+            0,
+            0xFFFFFF,
+            true
+        )
+        graphics.pose().popPose()
+    }
+
     private fun drawCenteredScaledText(
         graphics: GuiGraphics,
         text: Component,
@@ -581,6 +616,8 @@ class LootSelectionScreen(
         private const val COLUMNS = 5
         private const val VISIBLE_ROWS = 4
         private const val VISIBLE_CELLS = COLUMNS * VISIBLE_ROWS
+        private const val TITLE_MAX_WIDTH = 219
+        private const val TITLE_MIN_SCALE = 0.8f
     }
 
     override fun renderBackground(graphics: GuiGraphics, mouseX: Int, mouseY: Int, partialTick: Float) {
