@@ -6,7 +6,7 @@
 ![Fabric](https://img.shields.io/badge/Fabric-Loom-DBB69B?logo=fabric&logoColor=white)
 ![Kotlin](https://img.shields.io/badge/Kotlin-2.2.20-7F52FF?logo=kotlin&logoColor=white)
 ![Cobblemon](https://img.shields.io/badge/Cobblemon-1.8.0-3E8E41)
-![License](https://img.shields.io/badge/license-MIT-blue)
+![License](https://img.shields.io/badge/license-All%20Rights%20Reserved-red)
 
 *Read this in [English](#english) | Leia em [Português](#português)*
 
@@ -161,7 +161,11 @@ The JAR will be generated in `build/libs/`.
 
 ### License
 
-Available under the MIT license.
+All Rights Reserved. The original, unmodified mod may be used on public or private servers and included in public or private modpacks.
+
+Copying or reusing the mod's source code, assets, textures, artwork, or other content in another project is not permitted without explicit permission. Standalone reuploads, modified public versions, forks, derivative works, and altered binaries also require prior permission.
+
+See [`LICENSE`](LICENSE) for the full terms.
 
 ---
 
@@ -314,4 +318,8 @@ O JAR será gerado em `build/libs/`.
 
 ### Licença
 
-Disponível sob a licença MIT.
+Todos os direitos reservados. O mod original e sem modificações pode ser usado em servidores públicos ou privados e incluído em modpacks públicos ou privados.
+
+Não é permitido copiar ou reutilizar o código-fonte, assets, texturas, arte ou outros conteúdos do mod em outro projeto sem permissão explícita. Reuploads separados, versões públicas modificadas, forks, trabalhos derivados e binários alterados também exigem autorização prévia.
+
+Consulte [`LICENSE`](LICENSE) para os termos completos.
