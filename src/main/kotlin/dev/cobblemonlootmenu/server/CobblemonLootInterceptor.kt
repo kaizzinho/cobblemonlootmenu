@@ -3,6 +3,7 @@ package dev.cobblemonlootmenu.server
 import com.cobblemon.mod.common.api.drop.ItemDropEntry
 import com.cobblemon.mod.common.api.events.CobblemonEvents
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity
+import com.mojang.serialization.JsonOps
 import dev.cobblemonlootmenu.CobblemonLootMenuConstants
 import dev.cobblemonlootmenu.api.CobblemonLootMenuApi
 import dev.cobblemonlootmenu.api.LootMenuRequest
@@ -14,6 +15,7 @@ import dev.cobblemonlootmenu.config.LootMenuLog
 import net.minecraft.core.component.DataComponentPatch
 import net.minecraft.core.registries.Registries
 import net.minecraft.network.chat.Component
+import net.minecraft.resources.RegistryOps
 import net.minecraft.server.level.ServerLevel
 import net.minecraft.world.item.ItemStack
 
@@ -29,15 +31,20 @@ object CobblemonLootInterceptor {
                 event.drops.size
             )
 
-            val player = event.player
-            if (player == null) {
-                LootMenuLog.diagnostic("[cobblemon] skipped: no player owner")
-                return@subscribe
-            }
-
             val pokemonEntity = event.entity as? PokemonEntity
             if (pokemonEntity == null) {
                 LootMenuLog.diagnostic("[cobblemon] skipped: source isn't a pokemon entity")
+                return@subscribe
+            }
+
+            val isAlpha = pokemonEntity.pokemon.isAlpha
+            val player = event.player ?: if (isAlpha) {
+                AlphaLootBridge.playerFor(pokemonEntity.uuid)
+            } else {
+                null
+            }
+            if (player == null) {
+                LootMenuLog.diagnostic("[cobblemon] skipped: no player owner")
                 return@subscribe
             }
 
@@ -53,7 +60,7 @@ object CobblemonLootInterceptor {
             }
 
             val itemEntries = event.drops.filterIsInstance<ItemDropEntry>()
-            if (itemEntries.isEmpty()) {
+            if (itemEntries.isEmpty() && !isAlpha) {
                 LootMenuLog.diagnostic("[cobblemon] skipped: no item drop entries")
                 return@subscribe
             }
@@ -70,6 +77,7 @@ object CobblemonLootInterceptor {
 
             val dropPosition = pokemonEntity.position()
             val speciesName = pokemonEntity.pokemon.getDisplayName(false)
+
             event.cancel()
 
             event.drops
@@ -77,6 +85,15 @@ object CobblemonLootInterceptor {
                 .forEach { entry ->
                     entry.drop(pokemonEntity, level, dropPosition, player)
                 }
+
+            if (isAlpha) {
+                AlphaLootBridge.stageSpeciesLoot(
+                    entity = pokemonEntity,
+                    player = player,
+                    stacks = rolledStacks
+                )
+                return@subscribe
+            }
 
             if (rolledStacks.isEmpty()) {
                 LootMenuLog.diagnostic("[cobblemon] item entries rolled no stacks")
@@ -140,9 +157,19 @@ object CobblemonLootInterceptor {
 
         return runCatching {
             val stack = ItemStack(item, count)
-            val patchBuilder = DataComponentPatch.builder()
-            entry.components?.forEach { component -> patchBuilder.set(component) }
-            stack.applyComponentsAndValidate(patchBuilder.build())
+            val components = entry.components
+
+            if (components != null) {
+                val registryOps = RegistryOps.create(JsonOps.INSTANCE, level.registryAccess())
+                val patch = DataComponentPatch.CODEC
+                    .parse(registryOps, components)
+                    .result()
+                    .orElse(null)
+                    ?: return MaterializedDrop.Failed
+
+                stack.applyComponentsAndValidate(patch)
+            }
+
             MaterializedDrop.Stack(stack)
         }.getOrElse { error ->
             CobblemonLootMenuConstants.LOGGER.warn(

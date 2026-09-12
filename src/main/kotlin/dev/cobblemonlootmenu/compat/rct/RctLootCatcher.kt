@@ -126,6 +126,21 @@ object RctLootCatcher {
         }
 
         ServerLifecycleEvents.SERVER_STOPPING.register {
+            activeWatches.values.forEach { watch ->
+                watch.collected.forEach { stack ->
+                    if (!stack.isEmpty) {
+                        watch.level.addFreshEntity(
+                            ItemEntity(
+                                watch.level,
+                                watch.position.x,
+                                watch.position.y,
+                                watch.position.z,
+                                stack.copy()
+                            )
+                        )
+                    }
+                }
+            }
             activeWatches.clear()
             CompatDiagnostics.rct.activeWatches = 0
         }

@@ -4,6 +4,7 @@ import dev.cobblemonlootmenu.command.LootMenuCommands
 import dev.cobblemonlootmenu.compat.CompatInit
 import dev.cobblemonlootmenu.config.LootMenuConfig
 import dev.cobblemonlootmenu.network.LootNetworking
+import dev.cobblemonlootmenu.server.AlphaLootBridge
 import dev.cobblemonlootmenu.server.CobblemonLootInterceptor
 import dev.cobblemonlootmenu.server.PendingLootManager
 import net.fabricmc.api.ModInitializer
@@ -25,6 +26,7 @@ class CobblemonLootMenu : ModInitializer {
         LootNetworking.registerPayloadTypes()
         LootNetworking.registerServerReceiver()
         PendingLootManager.registerLifecycleEvents()
+        AlphaLootBridge.register()
         CobblemonLootInterceptor.register()
         CompatInit.register()
         LootMenuCommands.register()

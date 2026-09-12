@@ -1,8 +1,7 @@
-import org.gradle.api.tasks.compile.JavaCompile
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    id("java")
     id("dev.architectury.loom") version "1.13-SNAPSHOT"
     id("architectury-plugin") version "3.4-SNAPSHOT"
     kotlin("jvm") version "2.2.20"
@@ -16,32 +15,27 @@ base {
 }
 
 architectury {
-    platformSetupLoomIde()
     fabric()
-}
-
-loom {
-    silentMojangMappingsLicense()
 }
 
 repositories {
     mavenCentral()
+    maven("https://maven.fabricmc.net/")
     maven("https://artefacts.cobblemon.com/releases/")
 }
 
 dependencies {
-    minecraft("net.minecraft:minecraft:1.21.1")
+    minecraft("com.mojang:minecraft:1.21.1")
     mappings(loom.officialMojangMappings())
 
     modImplementation("net.fabricmc:fabric-loader:0.17.2")
     modImplementation("net.fabricmc.fabric-api:fabric-api:0.116.6+1.21.1")
     modImplementation("net.fabricmc:fabric-language-kotlin:1.13.6+kotlin.2.2.20")
 
-    // matches the cobblemon fabric-kotlin mdk
-    modCompileOnly("com.cobblemon:mod:1.7.3+1.21.1") {
+    modCompileOnly("com.cobblemon:mod:1.8.0+1.21.1") {
         isTransitive = false
     }
-    modImplementation("com.cobblemon:fabric:1.7.3+1.21.1")
+    modImplementation("com.cobblemon:fabric:1.8.0+1.21.1")
 
     modCompileOnly(files("libs/wildbosses-1.0.0.jar"))
     modCompileOnly(files("libs/rctapi-fabric-1.21.1-0.15.2-beta.jar"))
@@ -49,22 +43,16 @@ dependencies {
 }
 
 java {
-    toolchain {
-        languageVersion.set(JavaLanguageVersion.of(21))
-    }
+    toolchain.languageVersion.set(JavaLanguageVersion.of(21))
     withSourcesJar()
-    sourceCompatibility = JavaVersion.VERSION_21
-    targetCompatibility = JavaVersion.VERSION_21
 }
 
 kotlin {
-    compilerOptions {
-        jvmTarget.set(JvmTarget.JVM_21)
-    }
+    jvmToolchain(21)
 }
 
-tasks.withType<JavaCompile>().configureEach {
-    options.release.set(21)
+tasks.withType<KotlinCompile>().configureEach {
+    compilerOptions.jvmTarget.set(JvmTarget.JVM_21)
 }
 
 tasks.processResources {

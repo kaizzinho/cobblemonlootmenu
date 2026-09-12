@@ -8,6 +8,10 @@ object LootSources {
         "cobblemon",
         "wild_pokemon"
     )
+    val ALPHA_POKEMON: ResourceLocation = ResourceLocation.fromNamespaceAndPath(
+        "cobblemon",
+        "alpha_pokemon"
+    )
     val WILD_BOSS: ResourceLocation = ResourceLocation.fromNamespaceAndPath(
         "wildbosses",
         "boss"

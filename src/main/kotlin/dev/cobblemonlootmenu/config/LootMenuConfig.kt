@@ -10,7 +10,11 @@ import java.nio.file.Path
 
 object LootMenuConfig {
     private val gson = GsonBuilder().setPrettyPrinting().create()
-    private val configPath: Path = FabricLoader.getInstance()
+    private val configDir: Path = FabricLoader.getInstance()
+        .configDir
+        .resolve("cobblemon-loot-menu")
+    private val configPath: Path = configDir.resolve("config.json")
+    private val legacyConfigPath: Path = FabricLoader.getInstance()
         .configDir
         .resolve("cobblemon_loot_menu.json")
 
@@ -20,25 +24,42 @@ object LootMenuConfig {
 
     fun load() {
         val defaults = Values()
+        val sourcePath = when {
+            Files.exists(configPath) -> configPath
+            Files.exists(legacyConfigPath) -> legacyConfigPath
+            else -> null
+        }
 
-        if (Files.notExists(configPath)) {
+        if (sourcePath == null) {
             values = defaults
             save(defaults)
             return
         }
 
+        var loadedLegacyConfig = false
         values = try {
-            val json = JsonParser.parseString(Files.readString(configPath)).asJsonObject
+            val json = JsonParser.parseString(Files.readString(sourcePath)).asJsonObject
+            loadedLegacyConfig = sourcePath == legacyConfigPath
             readValues(json, defaults).sanitized()
         } catch (error: Exception) {
             CobblemonLootMenuConstants.LOGGER.error(
-                "Failed to read $configPath; resetting it to defaults",
+                "Failed to read $sourcePath; resetting it to defaults",
                 error
             )
             defaults
         }
 
         save(values)
+
+        if (loadedLegacyConfig) {
+            runCatching { Files.deleteIfExists(legacyConfigPath) }
+                .onFailure { error ->
+                    CobblemonLootMenuConstants.LOGGER.warn(
+                        "Failed to remove legacy config $legacyConfigPath",
+                        error
+                    )
+                }
+        }
     }
 
     private fun readValues(json: JsonObject, defaults: Values): Values {
