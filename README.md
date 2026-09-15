@@ -5,7 +5,7 @@
 ![Minecraft](https://img.shields.io/badge/Minecraft-1.21.1-62B47A?logo=minecraft&logoColor=white)
 ![Fabric](https://img.shields.io/badge/Fabric-Loom-DBB69B?logo=fabric&logoColor=white)
 ![Kotlin](https://img.shields.io/badge/Kotlin-2.2.20-7F52FF?logo=kotlin&logoColor=white)
-![Cobblemon](https://img.shields.io/badge/Cobblemon-1.8.0-3E8E41)
+![Cobblemon](https://img.shields.io/badge/Cobblemon-1.8.1-3E8E41)
 ![License](https://img.shields.io/badge/license-All%20Rights%20Reserved-red)
 
 *Read this in [English](#english) | Leia em [Português](#português)*
@@ -22,7 +22,7 @@ Current version: **1.0**.
 
 Loot stays server-side. The player only chooses what to take, drop, or discard.
 
-It works with regular wild Pokémon and Cobblemon 1.8 Alpha Pokémon, with optional integrations for **[WildBosses](https://github.com/arthurc0sme/WildBosses)** and [Radical Cobblemon Trainers](https://modrinth.com/mod/rctmod).
+It works with regular wild Pokémon and Cobblemon 1.8.1 Alpha Pokémon, with optional integrations for **[WildBosses](https://github.com/arthurc0sme/WildBosses)** and [Radical Cobblemon Trainers](https://modrinth.com/mod/rctmod).
 
 ### Screenshots
 
@@ -34,9 +34,9 @@ Regular wild Pokémon drops are rolled by Cobblemon and shown in the menu.
 
 #### Alpha Pokémon Loot
 
-Cobblemon 1.8 Alpha rewards are caught and merged with the Pokémon's regular species loot into one Alpha loot session. The mod uses the rewards Cobblemon actually spawned instead of rerolling or recreating the Alpha loot tables.
+Cobblemon 1.8.1 Alpha rewards are caught and merged with the Pokémon's regular species loot into one Alpha loot session. The mod uses the rewards Cobblemon actually spawned instead of rerolling or recreating the Alpha loot tables.
 
-Cobblemon 1.8 uses four main Alpha reward level bands: 1-30, 31-50, 51-65, and 66+. EXP Candy scales with the band, stat candies start at level 51, and each type slot gets an independent 50% chance to roll a type reward. Type rewards are weighted 75% toward the matching Type Gem and 25% toward its resistance Berry, with larger quantities from level 51 onward.
+Cobblemon 1.8.1 uses four main Alpha reward level bands: 1-30, 31-50, 51-65, and 66+. EXP Candy scales with the band, stat candies start at level 51, and each type slot gets an independent 50% chance to roll a type reward. Type rewards are weighted 75% toward the matching Type Gem and 25% toward its resistance Berry, with larger quantities from level 51 onward.
 
 #### RCT Mod Integration
 
@@ -59,7 +59,7 @@ Boss-tier rewards and the Pokémon's regular species loot are merged into one se
 - per-player queue for consecutive rewards;
 - timeout and disconnect fallback;
 - inventory-overflow notification;
-- native Cobblemon 1.8 Alpha reward capture;
+- native Cobblemon 1.8.1 Alpha reward capture;
 - optional WildBosses and RCT compatibility;
 - public API for other server-side mods.
 
@@ -94,7 +94,7 @@ The client never sends item IDs, quantities, or components back to the server.
 - Fabric Loader `0.17.2`
 - Fabric API `0.116.6+1.21.1`
 - Fabric Language Kotlin `1.13.6+kotlin.2.2.20`
-- Cobblemon `1.8.0+1.21.1`
+- Cobblemon `1.8.1+1.21.1`
 
 Optional:
 
@@ -179,7 +179,7 @@ Versão atual: **1.0**.
 
 Os itens ficam no servidor. O jogador apenas escolhe o que pegar, dropar ou descartar.
 
-O mod funciona com Pokémon selvagens normais e Pokémon Alpha do Cobblemon 1.8, com integrações opcionais para **WildBosses** e [Radical Cobblemon Trainers](https://modrinth.com/mod/rctmod).
+O mod funciona com Pokémon selvagens normais e Pokémon Alpha do Cobblemon 1.8.1, com integrações opcionais para **WildBosses** e [Radical Cobblemon Trainers](https://modrinth.com/mod/rctmod).
 
 ### Capturas de tela
 
@@ -191,9 +191,9 @@ Os drops normais de Pokémon selvagens são rolados pelo Cobblemon e exibidos no
 
 #### Loot de Pokémon Alpha
 
-As recompensas de Alpha do Cobblemon 1.8 são capturadas e unidas ao loot normal da espécie em uma única sessão de loot Alpha. O mod usa os itens realmente gerados pelo Cobblemon, sem rolar novamente ou recriar as loot tables de Alpha.
+As recompensas de Alpha do Cobblemon 1.8.1 são capturadas e unidas ao loot normal da espécie em uma única sessão de loot Alpha. O mod usa os itens realmente gerados pelo Cobblemon, sem rolar novamente ou recriar as loot tables de Alpha.
 
-O Cobblemon 1.8 usa quatro faixas de nível para a recompensa principal de Alpha: 1-30, 31-50, 51-65 e 66+. EXP Candy escala com a faixa, os stat candies começam no nível 51 e cada slot de tipo tem uma chance independente de 50% de gerar uma recompensa de tipo. Essas recompensas têm peso de 75% para a Type Gem correspondente e 25% para a Berry de resistência, com quantidades maiores a partir do nível 51.
+O Cobblemon 1.8.1 usa quatro faixas de nível para a recompensa principal de Alpha: 1-30, 31-50, 51-65 e 66+. EXP Candy escala com a faixa, os stat candies começam no nível 51 e cada slot de tipo tem uma chance independente de 50% de gerar uma recompensa de tipo. Essas recompensas têm peso de 75% para a Type Gem correspondente e 25% para a Berry de resistência, com quantidades maiores a partir do nível 51.
 
 #### Integração com o RCT
 
@@ -216,7 +216,7 @@ O loot do boss e o drop normal da espécie são unidos em uma única sessão.
 - fila individual para recompensas consecutivas;
 - fallback em timeout e desconexão;
 - aviso quando o inventário está cheio;
-- captura nativa das recompensas de Alpha do Cobblemon 1.8;
+- captura nativa das recompensas de Alpha do Cobblemon 1.8.1;
 - compatibilidade opcional com WildBosses e RCT;
 - API pública para outros mods de servidor.
 
@@ -251,7 +251,7 @@ O cliente nunca envia IDs, quantidades ou componentes dos itens de volta ao serv
 - Fabric Loader `0.17.2`
 - Fabric API `0.116.6+1.21.1`
 - Fabric Language Kotlin `1.13.6+kotlin.2.2.20`
-- Cobblemon `1.8.0+1.21.1`
+- Cobblemon `1.8.1+1.21.1`
 
 Opcionais:
 
