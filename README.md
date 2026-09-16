@@ -1,6 +1,6 @@
 # Cobblemon Loot Menu
 
-![Status](https://img.shields.io/badge/status-private%20testing-yellow)
+![Status](https://img.shields.io/badge/status-release-brightgreen)
 ![Version](https://img.shields.io/badge/version-1.0-blue)
 ![Minecraft](https://img.shields.io/badge/Minecraft-1.21.1-62B47A?logo=minecraft&logoColor=white)
 ![Fabric](https://img.shields.io/badge/Fabric-Loom-DBB69B?logo=fabric&logoColor=white)
@@ -20,6 +20,8 @@
 
 Current version: **1.0**.
 
+This repository contains the project source and technical overview; installable builds are distributed through GitHub Releases.
+
 Loot stays server-side. The player only chooses what to take, drop, or discard.
 
 It works with regular wild Pokémon and Cobblemon 1.8.1 Alpha Pokémon, with optional integrations for **[WildBosses](https://github.com/arthurc0sme/WildBosses)** and [Radical Cobblemon Trainers](https://modrinth.com/mod/rctmod).
@@ -35,8 +37,9 @@ Regular wild Pokémon drops are rolled by Cobblemon and shown in the menu.
 #### Alpha Pokémon Loot
 
 Cobblemon 1.8.1 Alpha rewards are caught and merged with the Pokémon's regular species loot into one Alpha loot session. The mod uses the rewards Cobblemon actually spawned instead of rerolling or recreating the Alpha loot tables.
-
 Cobblemon 1.8.1 uses four main Alpha reward level bands: 1-30, 31-50, 51-65, and 66+. EXP Candy scales with the band, stat candies start at level 51, and each type slot gets an independent 50% chance to roll a type reward. Type rewards are weighted 75% toward the matching Type Gem and 25% toward its resistance Berry, with larger quantities from level 51 onward.
+
+![Alpha pokemon](docs/screenshots/alpha-lootmenu.png)
 
 #### RCT Mod Integration
 
@@ -87,6 +90,12 @@ loot is rolled on the server
 
 The client never sends item IDs, quantities, or components back to the server.
 
+### Download
+
+Ready-to-use builds are published on **[GitHub Releases](https://github.com/arthurc0sme/cobblemonlootmenu/releases)**.
+
+Download the `.jar` release asset for normal installation. The automatically generated GitHub **Source code** archives are the repository source, not the installable mod.
+
 ### Requirements
 
 - Minecraft `1.21.1`
@@ -112,7 +121,7 @@ Optional:
 The first launch creates:
 
 ```text
-config/cobblemon_loot_menu.json
+config/cobblemon-loot-menu/config.json
 ```
 
 It controls timeouts, queue size, integrations, diagnostic logs, queue indicators, overflow messages, and advanced compatibility timings.
@@ -149,16 +158,6 @@ CobblemonLootMenuApi.enqueue(
 
 All supplied stacks are copied before being stored.
 
-### Building
-
-Java 21 is required. From the project root, using Gradle:
-
-```powershell
-gradle clean build
-```
-
-The JAR will be generated in `build/libs/`.
-
 ### License
 
 All Rights Reserved. The original, unmodified mod may be used on public or private servers and included in public or private modpacks.
@@ -176,6 +175,8 @@ See [`LICENSE`](LICENSE) for the full terms.
 **Cobblemon Loot Menu** substitui o drop direto de loot por uma pequena tela de seleção.
 
 Versão atual: **1.0**.
+
+Este repositório reúne o código-fonte e a visão técnica do projeto; as versões instaláveis são distribuídas pelo GitHub Releases.
 
 Os itens ficam no servidor. O jogador apenas escolhe o que pegar, dropar ou descartar.
 
@@ -244,6 +245,12 @@ o loot é rolado no servidor
 
 O cliente nunca envia IDs, quantidades ou componentes dos itens de volta ao servidor.
 
+### Download
+
+As versões prontas para uso são publicadas em **[GitHub Releases](https://github.com/arthurc0sme/cobblemonlootmenu/releases)**.
+
+Baixe o arquivo `.jar` anexado à release para instalar o mod. Os arquivos **Source code** gerados automaticamente pelo GitHub contêm o código-fonte do repositório e não são o mod instalável.
+
 ### Requisitos
 
 - Minecraft `1.21.1`
@@ -269,7 +276,7 @@ Opcionais:
 Na primeira inicialização, o mod cria:
 
 ```text
-config/cobblemon_loot_menu.json
+config/cobblemon-loot-menu/config.json
 ```
 
 O arquivo controla timeouts, tamanho da fila, integrações, logs de diagnóstico, indicador da fila, avisos de inventário cheio e tempos avançados de compatibilidade.
@@ -305,16 +312,6 @@ CobblemonLootMenuApi.enqueue(
 ```
 
 Todos os stacks são copiados antes de serem armazenados.
-
-### Compilação
-
-É necessário usar Java 21. Na raiz do projeto, usando o Gradle:
-
-```powershell
-gradle clean build
-```
-
-O JAR será gerado em `build/libs/`.
 
 ### Licença
 

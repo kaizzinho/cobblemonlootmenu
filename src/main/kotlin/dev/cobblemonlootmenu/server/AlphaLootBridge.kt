@@ -28,6 +28,8 @@ object AlphaLootBridge {
         var position: Vec3,
         val pokemonName: Component,
         var expiresAtTick: Int,
+        var battleId: UUID? = null,
+        var fainted: Boolean = false,
         var captureActive: Boolean = false,
         var captureTick: Int? = null,
         var settleAtTick: Int? = null,
@@ -44,7 +46,7 @@ object AlphaLootBridge {
             if (!LootMenuConfig.values.enableWildPokemonLoot) return@subscribe
 
             alphaEntities(event.battle).forEach { entity ->
-                ensureWatch(entity)
+                ensureWatch(entity)?.battleId = event.battle.battleId
             }
         }
 
@@ -56,6 +58,8 @@ object AlphaLootBridge {
             if (!entity.pokemon.isWild() || !entity.pokemon.isAlpha) return@subscribe
 
             val watch = ensureWatch(entity) ?: return@subscribe
+            watch.battleId = event.battle.battleId
+            watch.fainted = true
             watch.position = entity.position()
             watch.captureActive = true
             watch.captureTick = watch.level.server.tickCount
@@ -112,23 +116,31 @@ object AlphaLootBridge {
         }
 
         CobblemonEvents.BATTLE_FLED.subscribe { event ->
-            alphaEntities(event.battle).forEach { entity ->
-                release(entity.uuid)
-            }
+            val battleId = event.battle.battleId
+            activeWatches
+                .filterValues { watch -> watch.battleId == battleId }
+                .keys
+                .toList()
+                .forEach(::release)
         }
 
         CobblemonEvents.BATTLE_VICTORY.subscribe { event ->
             val winningPlayerIds = event.winners
                 .flatMap { actor -> actor.getPlayerUUIDs().toList() }
                 .distinct()
+            val battleId = event.battle.battleId
+            val watchedEntities = activeWatches
+                .filterValues { watch -> watch.battleId == battleId }
+                .keys
+                .toList()
 
-            alphaEntities(event.battle).forEach { entity ->
-                if (entity.pokemon.currentHealth > 0) {
-                    release(entity.uuid)
+            watchedEntities.forEach { entityUuid ->
+                val watch = activeWatches[entityUuid] ?: return@forEach
+                if (!watch.fainted) {
+                    release(entityUuid)
                     return@forEach
                 }
 
-                val watch = activeWatches[entity.uuid] ?: return@forEach
                 if (watch.player == null) {
                     watch.player = singleWinningPlayer(winningPlayerIds, watch.level)
                 }

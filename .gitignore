@@ -8,3 +8,17 @@ out/
 *.iws
 .DS_Store
 Thumbs.db
+
+# local dependencies
+libs/
+
+# gradle build setup
+gradle/
+gradlew
+gradlew.bat
+build.gradle.kts
+settings.gradle.kts
+gradle.properties
+
+# github actions
+.github/workflows/
