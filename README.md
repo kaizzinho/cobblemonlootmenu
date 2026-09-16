@@ -1,10 +1,9 @@
 # Cobblemon Loot Menu
 
-![Status](https://img.shields.io/badge/status-release-brightgreen)
 ![Version](https://img.shields.io/badge/version-1.0-blue)
 ![Minecraft](https://img.shields.io/badge/Minecraft-1.21.1-62B47A?logo=minecraft&logoColor=white)
-![Fabric](https://img.shields.io/badge/Fabric-Loom-DBB69B?logo=fabric&logoColor=white)
-![Kotlin](https://img.shields.io/badge/Kotlin-2.2.20-7F52FF?logo=kotlin&logoColor=white)
+![Fabric](https://img.shields.io/badge/Fabric-Loader%200.17.2%2B-DBB69B?logo=minecraft&logoColor=white)
+![Kotlin](https://img.shields.io/badge/Kotlin-Fabric%20Language%20Kotlin-7F52FF?logo=kotlin&logoColor=white)
 ![Cobblemon](https://img.shields.io/badge/Cobblemon-1.8.1-3E8E41)
 ![License](https://img.shields.io/badge/license-All%20Rights%20Reserved-red)
 
