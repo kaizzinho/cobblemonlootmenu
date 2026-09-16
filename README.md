@@ -37,6 +37,7 @@ Regular wild Pokémon drops are rolled by Cobblemon and shown in the menu.
 #### Alpha Pokémon Loot
 
 Cobblemon 1.8.1 Alpha rewards are caught and merged with the Pokémon's regular species loot into one Alpha loot session. The mod uses the rewards Cobblemon actually spawned instead of rerolling or recreating the Alpha loot tables.
+
 Cobblemon 1.8.1 uses four main Alpha reward level bands: 1-30, 31-50, 51-65, and 66+. EXP Candy scales with the band, stat candies start at level 51, and each type slot gets an independent 50% chance to roll a type reward. Type rewards are weighted 75% toward the matching Type Gem and 25% toward its resistance Berry, with larger quantities from level 51 onward.
 
 ![Alpha pokemon](docs/screenshots/alpha-lootmenu.png)
@@ -195,6 +196,8 @@ Os drops normais de Pokémon selvagens são rolados pelo Cobblemon e exibidos no
 As recompensas de Alpha do Cobblemon 1.8.1 são capturadas e unidas ao loot normal da espécie em uma única sessão de loot Alpha. O mod usa os itens realmente gerados pelo Cobblemon, sem rolar novamente ou recriar as loot tables de Alpha.
 
 O Cobblemon 1.8.1 usa quatro faixas de nível para a recompensa principal de Alpha: 1-30, 31-50, 51-65 e 66+. EXP Candy escala com a faixa, os stat candies começam no nível 51 e cada slot de tipo tem uma chance independente de 50% de gerar uma recompensa de tipo. Essas recompensas têm peso de 75% para a Type Gem correspondente e 25% para a Berry de resistência, com quantidades maiores a partir do nível 51.
+
+![Alpha pokemon](docs/screenshots/alpha-lootmenu.png)
 
 #### Integração com o RCT
 
