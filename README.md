@@ -1,6 +1,6 @@
 # Cobblemon Loot Menu
 
-![Version](https://img.shields.io/badge/version-1.0-blue)
+![Version](https://img.shields.io/badge/version-1.1-blue)
 ![Minecraft](https://img.shields.io/badge/Minecraft-1.21.1-62B47A?logo=minecraft&logoColor=white)
 ![Fabric](https://img.shields.io/badge/Fabric-Loader%200.17.2%2B-DBB69B?logo=minecraft&logoColor=white)
 ![Kotlin](https://img.shields.io/badge/Kotlin-Fabric%20Language%20Kotlin-7F52FF?logo=kotlin&logoColor=white)
@@ -17,7 +17,7 @@
 
 **Cobblemon Loot Menu** replaces direct loot drops with a small selection screen.
 
-Current version: **1.0**.
+Current version: **1.1**.
 
 This repository contains the project source and technical overview; installable builds are distributed through GitHub Releases.
 
@@ -174,7 +174,7 @@ See [`LICENSE`](LICENSE) for the full terms.
 
 **Cobblemon Loot Menu** substitui o drop direto de loot por uma pequena tela de seleção.
 
-Versão atual: **1.0**.
+Versão atual: **1.1**.
 
 Este repositório reúne o código-fonte e a visão técnica do projeto; as versões instaláveis são distribuídas pelo GitHub Releases.
 
