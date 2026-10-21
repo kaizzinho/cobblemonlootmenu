@@ -1,5 +1,6 @@
 package dev.cobblemonlootmenu.client
 
+import com.cobblemon.mod.common.client.CobblemonClient
 import dev.cobblemonlootmenu.CobblemonLootMenuConstants
 import dev.cobblemonlootmenu.client.gui.LootSelectionScreen
 import dev.cobblemonlootmenu.network.CloseLootScreenPayload
@@ -59,6 +60,11 @@ class CobblemonLootMenuClient : ClientModInitializer {
 
         if (client.level == null || client.player == null) {
             clearPendingOpen()
+            return
+        }
+
+        if (CobblemonClient.battle != null) {
+            clearScreenTicks = 0
             return
         }
 
